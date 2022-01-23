@@ -1,17 +1,27 @@
+import { prisma } from "../../../prisma/prismaClient";
 import { gql } from "apollo-server";
+import { shop } from "@prisma/client";
 
-const shop = gql`
+export const shopSchema = gql`
   type Shop {
-    id: String!
+    idshop: ID
+    name: String
+    description: String!
+    location: String!
+    idcategory: Int!
   }
   type Query {
-    addShopResolver: Shop
+    getAllShops: [Shop]
+    getShopById(id: Int!): Shop
   }
 `;
 
-const addShopResolver = () => console.log("test2");
+export const getAllShops = async (): Promise<Array<shop>> =>
+  prisma.shop.findMany();
 
-module.exports = {
-  shop,
-  addShopResolver,
-};
+export const getShopById = async (root: any, args: any): Promise<shop> =>
+  prisma.shop.findUnique({
+    where: {
+      idshop: args.id,
+    },
+  });

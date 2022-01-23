@@ -8,7 +8,7 @@ datasource db {
 }
 
 model shop {
-  idshop      Int     @id
+  idshop      Int     @id @default(autoincrement())
   name        String  @db.VarChar(45)
   description String? @db.LongText
   location    String? @db.VarChar(45)

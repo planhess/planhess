@@ -1,18 +1,16 @@
-const { ApolloServer, gql } = require("apollo-server");
-const { PrismaClient } = require("@prisma/client");
-const { user, addUserResolver } = require("./graphql/schema/typedefs/user");
-const { shop, addShopResolver } = require("./graphql/schema/typedefs/shop");
-// import { user, addUserResolver } from "./graphql/schema/typedefs/user";
-const prisma = new PrismaClient();
-// const Person = require("./graphql/schema/typedefs/GqlBook");
+import { ApolloServer, gql } from "apollo-server";
+import {
+  shopSchema,
+  getAllShops,
+  getShopById,
+} from "./graphql/schema/typedefs/shop";
 const typeDefs = gql`
-  ${shop}
-  ${user}
+  ${shopSchema}
 `;
 const resolvers = {
   Query: {
-    addShopResolver,
-    addUserResolver,
+    getAllShops,
+    getShopById,
   },
 };
 // The ApolloServer constructor requires two parameters: your schema
