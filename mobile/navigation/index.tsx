@@ -26,8 +26,6 @@ import {
   RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
-import { ApolloProvider, useQuery, gql } from "@apollo/client";
-import client from "../graphql/config";
 
 export default function Navigation({
   colorScheme,
@@ -39,9 +37,7 @@ export default function Navigation({
       linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <ApolloProvider client={client}>
-        <RootNavigator />
-      </ApolloProvider>
+      <RootNavigator />
     </NavigationContainer>
   );
 }
