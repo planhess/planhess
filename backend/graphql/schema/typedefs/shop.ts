@@ -1,11 +1,11 @@
 import { gql } from "apollo-server";
 
 const shop = gql`
-  type Person {
+  type Shop {
     id: String!
   }
   type Query {
-    addShopResolver: Person
+    addShopResolver: Shop
   }
 `;
 

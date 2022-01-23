@@ -6,3 +6,11 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model shop {
+  idshop      Int     @id
+  name        String  @db.VarChar(45)
+  description String? @db.LongText
+  location    String? @db.VarChar(45)
+  idcategory  Int?
+}
