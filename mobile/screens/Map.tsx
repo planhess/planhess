@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Text, Dimensions } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { View } from "../components/Themed";
 import { gql, useQuery } from "@apollo/client";
@@ -19,31 +19,30 @@ const GET_ALL_SHOPS = gql`
       description
       location
       idcategory
+      coordinates {
+        idcoordinates
+        latitude
+        longitude
+      }
     }
   }
 `;
 
-export const ilClassico = {
-  id: 1,
-  coordinates: {
-    latitude: 50.82306517540965,
-    longitude: 4.380942028807865,
-  },
-  name: "My Tannour",
-  description: "Une pizza achetee, une offerte!",
-};
-
 export default function Map(): JSX.Element {
   const { loading, error, data } = useQuery(GET_ALL_SHOPS);
-  console.log(data);
+  if (loading) return <Text>Loading...</Text>;
+  if (error) return <Text>Error: {error}</Text>;
   return (
     <View style={styles.container}>
       <MapView initialRegion={initialRegion} style={styles.map}>
-        <Marker
-          coordinate={ilClassico.coordinates}
-          title={ilClassico.name}
-          description={ilClassico.description}
-        />
+        {data.getAllShops.map((shop) => (
+          <Marker
+            key={shop.idshop}
+            coordinate={shop.coordinates}
+            title={shop.name}
+            description={shop.description}
+          />
+        ))}
       </MapView>
     </View>
   );

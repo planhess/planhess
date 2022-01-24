@@ -19,7 +19,11 @@ export const shopSchema = gql`
 `;
 
 export const getAllShops = async (): Promise<Array<shop>> =>
-  prisma.shop.findMany();
+  prisma.shop.findMany({
+    include: {
+      coordinates: true,
+    },
+  });
 
 export const getShopById = async (root: any, args: any): Promise<shop> => {
   const shop = await prisma.shop.findUnique({
