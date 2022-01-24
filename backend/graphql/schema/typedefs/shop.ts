@@ -26,16 +26,9 @@ export const getShopById = async (root: any, args: any): Promise<shop> => {
     where: {
       idshop: args.id,
     },
-  });
-  const coordinates = await prisma.coordinates.findUnique({
-    where: {
-      idcoordinates: shop.idcoordinates,
+    include: {
+      coordinates: true,
     },
   });
-  return {
-    ...shop,
-    coordinates: {
-      ...coordinates,
-    },
-  };
+  return shop;
 };

@@ -19,7 +19,6 @@ const GET_ALL_SHOPS = gql`
       description
       location
       idcategory
-      coordinates
     }
   }
 `;
@@ -36,6 +35,7 @@ export const ilClassico = {
 
 export default function Map(): JSX.Element {
   const { loading, error, data } = useQuery(GET_ALL_SHOPS);
+  console.log(data);
   return (
     <View style={styles.container}>
       <MapView initialRegion={initialRegion} style={styles.map}>
