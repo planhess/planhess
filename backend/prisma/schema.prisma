@@ -14,7 +14,7 @@ model shop {
   location      String?     @db.VarChar(45)
   idcategory    Int?
   idcoordinates Int
-  coordinates   coordinates @relation(fields: [idcoordinates], references: [idcoordinates], onDelete: NoAction, onUpdate: NoAction, map: "idcoordinates")
+  coordinates   coordinates @relation(fields: [idcoordinates], references: [idcoordinates], onDelete: NoAction, map: "idcoordinates")
 
   @@index([idcoordinates], map: "idcoordinates_idx")
 }
