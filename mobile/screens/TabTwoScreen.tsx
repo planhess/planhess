@@ -1,17 +1,20 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createNativeStackNavigator, NavigationProps } from '@react-navigation/native-stack'
 import { FlatList, StyleSheet } from 'react-native'
 import ShopDetails from '../components/ShopDetails'
 import { Text, View } from '../components/Themed'
-import { RootStackParamList } from '../types'
 import { ilClassico } from './Map'
 
 const Stack = createNativeStackNavigator()
 
-const keyExtractor = (item) => item.id
+// TODO: use correct type
+interface Item {
+  id: string
+  name: string
+}
+const keyExtractor = (item: Item): string => item.id
 
-function Feed ({ navigation }) {
-  const renderItem = ({ item }) => (
+function Feed ({ navigation }: { navigation: NavigationProps }): JSX.Element {
+  const renderItem = ({ item }: { item: Item }): JSX.Element => (
     <View>
       <Text
         onPress={() => navigation.navigate('ShopDetails', {
@@ -33,7 +36,7 @@ function Feed ({ navigation }) {
   )
 }
 
-export default function TabTwoScreen () {
+export default function TabTwoScreen (): JSX.Element {
   return (
     <Stack.Navigator>
       <Stack.Screen

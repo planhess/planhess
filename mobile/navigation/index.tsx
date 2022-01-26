@@ -31,7 +31,7 @@ export default function Navigation ({
   colorScheme
 }: {
   colorScheme: ColorSchemeName
-}) {
+}): JSX.Element {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
@@ -48,7 +48,7 @@ export default function Navigation ({
  */
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
-function RootNavigator () {
+function RootNavigator (): JSX.Element {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -74,7 +74,7 @@ function RootNavigator () {
  */
 const BottomTab = createBottomTabNavigator<RootTabParamList>()
 
-function BottomTabNavigator () {
+function BottomTabNavigator (): JSX.Element {
   const colorScheme = useColorScheme()
 
   return (
@@ -125,6 +125,6 @@ function BottomTabNavigator () {
 function TabBarIcon (props: {
   name: React.ComponentProps<typeof FontAwesome>['name']
   color: string
-}) {
+}): JSX.Element {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />
 }

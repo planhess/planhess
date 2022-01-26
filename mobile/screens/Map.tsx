@@ -1,9 +1,7 @@
-import { Image, StyleSheet, Dimensions } from 'react-native'
-import MapView, { Callout, Marker } from 'react-native-maps'
+import { StyleSheet, Dimensions } from 'react-native'
+import MapView, { Marker } from 'react-native-maps'
 
-import EditScreenInfo from '../components/EditScreenInfo'
-import { Text, View } from '../components/Themed'
-import { RootTabScreenProps } from '../types'
+import { View } from '../components/Themed'
 
 // bxl
 const initialRegion = {
@@ -23,7 +21,7 @@ export const ilClassico = {
   description: 'Une pizza achetee, une offerte!'
 }
 
-export default function Map ({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function Map (): JSX.Element {
   return (
     <View style={styles.container}>
       <MapView initialRegion={initialRegion} style={styles.map}>
