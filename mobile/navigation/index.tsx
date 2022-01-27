@@ -54,7 +54,9 @@ function RootNavigator(): JSX.Element {
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+        }}
       />
       <Stack.Screen
         name="NotFound"
@@ -81,15 +83,21 @@ function BottomTabNavigator(): JSX.Element {
     <BottomTab.Navigator
       initialRouteName="TabOne"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        // tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: Colors.dark.background,
+        },
       }}
     >
       <BottomTab.Screen
         name="TabOne"
         component={Map}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-          title: "Map",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Planhess",
+          tabBarIcon: ({ focused }) => {
+            return <TabBarIcon name="map-marker" focused={focused} />;
+          },
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate("Modal")}
@@ -111,8 +119,11 @@ function BottomTabNavigator(): JSX.Element {
         name="TabTwo"
         component={TabTwoScreen}
         options={{
+          title: "Shops",
           headerShown: false,
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ focused }) => {
+            return <TabBarIcon name="tag" focused={focused} />;
+          },
         }}
       />
     </BottomTab.Navigator>
@@ -124,7 +135,14 @@ function BottomTabNavigator(): JSX.Element {
  */
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}): JSX.Element {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  focused: boolean;
+}) {
+  return (
+    <FontAwesome
+      size={40}
+      style={{ marginBottom: -3 }}
+      color={props.focused ? Colors.red.color : Colors.white.color}
+      {...props}
+    />
+  );
 }
