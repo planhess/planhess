@@ -35,7 +35,7 @@ export default function Map(): JSX.Element {
   return (
     <View style={styles.container}>
       <MapView initialRegion={initialRegion} style={styles.map}>
-        {data.getAllShops.map((shop) => (
+        {data.getAllShops.map((shop: Shop) => (
           <Marker
             key={shop.idshop}
             coordinate={shop.coordinates}
