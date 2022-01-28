@@ -25,6 +25,9 @@ const Feed = ({ navigation }) => {
     );
   };
 
+  loading && <View>Loading...</View>;
+  error && <View>Error: {error}</View>;
+
   if (data) {
     return (
       <View style={styles.container}>
