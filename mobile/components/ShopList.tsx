@@ -2,22 +2,29 @@ import { GET_ALL_SHOPS } from "../graphql/query";
 import { useQuery } from "@apollo/client";
 import { Text, View } from "../components/Themed";
 import { FlatList, StyleSheet } from "react-native";
+import Colors from "../constants/Colors";
 
 const Feed = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_ALL_SHOPS);
-  const renderItem = ({ item }) => (
-    <View style={styles.itemContainer}>
-      <Text
-        onPress={() =>
-          navigation.navigate("ShopDetails", {
-            item,
-          })
-        }
-      >
-        {item.name}
-      </Text>
-    </View>
-  );
+  const renderItem = ({ item, index }) => {
+    return (
+      <>
+        <View style={styles.itemContainer}>
+          <Text
+            onPress={() =>
+              navigation.navigate("ShopDetails", {
+                item,
+              })
+            }
+          >
+            {item.name}
+          </Text>
+        </View>
+        {index % 2 === 0 && <View style={styles.separator}></View>}
+      </>
+    );
+  };
+
   if (data) {
     return (
       <View style={styles.container}>
@@ -46,9 +53,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   separator: {
-    marginVertical: 30,
     height: 1,
-    width: "80%",
+    backgroundColor: Colors.red.color,
   },
 });
 
