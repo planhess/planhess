@@ -6,7 +6,7 @@ import Colors from "../constants/Colors";
 
 const Feed = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_ALL_SHOPS);
-  const renderItem = ({ item, index }) => {
+  const renderItem = ({ item, index }: { item: Shop; index: number }) => {
     return (
       <>
         <View style={styles.itemContainer}>
@@ -34,7 +34,7 @@ const Feed = ({ navigation }) => {
         <FlatList
           data={data.getAllShops}
           renderItem={renderItem}
-          keyExtractor={(item) => item.idshop}
+          keyExtractor={(item: Shop): string => item.idshop.toString()}
         />
       </View>
     );
