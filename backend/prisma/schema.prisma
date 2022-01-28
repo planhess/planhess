@@ -8,9 +8,20 @@ datasource db {
 }
 
 model shop {
-  idshop      Int     @id @default(autoincrement())
-  name        String  @db.VarChar(45)
-  description String? @db.LongText
-  location    String? @db.VarChar(45)
-  idcategory  Int?
+  idshop        Int         @id @default(autoincrement())
+  name          String      @db.VarChar(45)
+  description   String?     @db.LongText
+  location      String?     @db.VarChar(45)
+  idcategory    Int?
+  idcoordinates Int
+  coordinates   coordinates @relation(fields: [idcoordinates], references: [idcoordinates], onDelete: NoAction, map: "idcoordinates")
+
+  @@index([idcoordinates], map: "idcoordinates_idx")
+}
+
+model coordinates {
+  idcoordinates Int    @id @default(autoincrement())
+  latitude      Float  @db.Float
+  longitude     Float  @db.Float
+  shop          shop[]
 }
