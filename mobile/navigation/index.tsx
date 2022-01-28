@@ -19,13 +19,13 @@ import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import Map from "../screens/Map";
-import TabTwoScreen from "../screens/TabTwoScreen";
 import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import ShopsListScreen from "../screens/ShopsListScreen";
 
 export default function Navigation({
   colorScheme,
@@ -117,7 +117,7 @@ function BottomTabNavigator(): JSX.Element {
       />
       <BottomTab.Screen
         name="TabTwo"
-        component={TabTwoScreen}
+        component={ShopsListScreen}
         options={{
           title: "Shops",
           headerShown: false,
