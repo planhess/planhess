@@ -1,7 +1,7 @@
 import { GET_ALL_SHOPS } from "../graphql/query";
 import { useQuery } from "@apollo/client";
 import { Text, View } from "../components/Themed";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, Dimensions, Image } from "react-native";
 import Colors from "../constants/Colors";
 
 const Feed = ({ navigation }) => {
@@ -10,6 +10,11 @@ const Feed = ({ navigation }) => {
     return (
       <>
         <View style={styles.itemContainer}>
+          <Image
+            style={{ height: 100 }}
+            source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
+            resizeMode="cover"
+          />
           <Text
             onPress={() =>
               navigation.navigate("ShopDetails", {
@@ -17,7 +22,9 @@ const Feed = ({ navigation }) => {
               })
             }
           >
-            {item.name}
+            <Text style={styles.text}>{item.name}</Text>
+            {"\n"}
+            <Text style={styles.text}>{item.description}</Text>
           </Text>
         </View>
         {index % 2 === 0 && <View style={styles.separator}></View>}
@@ -44,19 +51,24 @@ const Feed = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "#FFFF",
   },
+  text: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: Colors.dark.background,
+  },
   itemContainer: {
-    padding: 20,
+    backgroundColor: "#FFFF",
+    flex: 1,
+    height: 150,
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
   },
   separator: {
-    height: 1,
+    height: 10,
     backgroundColor: Colors.red.color,
   },
 });
