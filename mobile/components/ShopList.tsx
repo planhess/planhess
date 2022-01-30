@@ -25,20 +25,17 @@ const Feed = ({ navigation }) => {
             }
           >
             <Image
-              style={{ height: 100 }}
-              source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
+              style={{ height: 120 }}
+              source={{
+                uri: "https://snm-nl-contentmedia.s3-eu-west-1.amazonaws.com/cookloveshare-wordpress/app/uploads/2018/01/10171030/quelles-sont-les-5-choses-les-plus-sales-dans-un-restaurant.jpg",
+              }}
               resizeMode="cover"
             />
             {/* <Text
           > */}
             <View style={styles.titleContainer}>
               <Text style={styles.title}>{item.name}</Text>
-              <Rating
-                name={"star"}
-                rating={3}
-                size={19}
-                color={Colors.red.color}
-              />
+              <Rating rating={13} size={19} color={Colors.red.color} />
             </View>
             <View style={styles.titleContainer}>
               <Text style={styles.text}>{item.description}</Text>
