@@ -1,7 +1,14 @@
 import { GET_ALL_SHOPS } from "../graphql/query";
 import { useQuery } from "@apollo/client";
 import { Text, View } from "../components/Themed";
-import { FlatList, StyleSheet, Dimensions, Image } from "react-native";
+import Rating from "./Rating";
+import {
+  FlatList,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import Colors from "../constants/Colors";
 
 const Feed = ({ navigation }) => {
@@ -9,23 +16,34 @@ const Feed = ({ navigation }) => {
   const renderItem = ({ item, index }: { item: Shop; index: number }) => {
     return (
       <>
-        <View style={styles.itemContainer}>
-          <Image
-            style={{ height: 100 }}
-            source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
-            resizeMode="cover"
-          />
-          <Text
+        <View style={styles.container}>
+          <TouchableOpacity
             onPress={() =>
               navigation.navigate("ShopDetails", {
                 item,
               })
             }
           >
-            <Text style={styles.text}>{item.name}</Text>
-            {"\n"}
-            <Text style={styles.text}>{item.description}</Text>
-          </Text>
+            <Image
+              style={{ height: 100 }}
+              source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
+              resizeMode="cover"
+            />
+            {/* <Text
+          > */}
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>{item.name}</Text>
+              <Rating
+                name={"star"}
+                rating={3}
+                size={19}
+                color={Colors.red.color}
+              />
+            </View>
+            <View style={styles.titleContainer}>
+              <Text style={styles.text}>{item.description}</Text>
+            </View>
+          </TouchableOpacity>
         </View>
         {index % 2 === 0 && <View style={styles.separator}></View>}
       </>
@@ -50,22 +68,26 @@ const Feed = ({ navigation }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#FFFF",
+    flex: 1,
+    height: 250,
   },
   text: {
     fontSize: 20,
     fontWeight: "bold",
     color: Colors.dark.background,
   },
-  itemContainer: {
+  titleContainer: {
     backgroundColor: "#FFFF",
-    flex: 1,
-    height: 150,
+    width: Dimensions.get("window").width,
+    display: "flex",
+    flexDirection: "row",
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
+    flexBasis: "50%",
+    color: Colors.dark.background,
   },
   separator: {
     height: 10,
