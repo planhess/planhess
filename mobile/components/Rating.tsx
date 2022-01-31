@@ -28,7 +28,7 @@ const Rating = ({ size, color, rating }: RatingProps): JSX.Element => {
 
   return (
     <>
-      {stars.length <= 5 &&
+      {rating <= 5 &&
         stars.map((starName: IconName, index) => (
           <FontAwesome name={starName} color={color} key={index} size={size} />
         ))}

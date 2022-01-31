@@ -11,7 +11,11 @@ export default function ShopsListScreen() {
         name="Feed"
         component={Feed}
         options={{
-          title: "Liste",
+          headerStyle: {
+            backgroundColor: "#FFF",
+          },
+          title: "",
+          headerShadowVisible: false,
         }}
       />
       <Stack.Screen name="ShopDetails" component={ShopDetails} />
