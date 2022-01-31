@@ -26,6 +26,7 @@ import {
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import ShopsListScreen from "../screens/ShopsListScreen";
+import HomeScreen from "../screens/HomeScreen";
 
 export default function Navigation({
   colorScheme,
@@ -114,6 +115,17 @@ function BottomTabNavigator(): JSX.Element {
             </Pressable>
           ),
         })}
+      />
+      <BottomTab.Screen
+        name="TabHome"
+        component={HomeScreen}
+        options={{
+          title: "Home",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            return <TabBarIcon name="home" focused={focused} />;
+          },
+        }}
       />
       <BottomTab.Screen
         name="TabTwo"
