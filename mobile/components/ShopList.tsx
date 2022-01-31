@@ -12,6 +12,7 @@ import {
 import Colors from "../constants/Colors";
 import { useState } from "react";
 import client from "../graphql/config";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Feed = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_ALL_SHOPS);
@@ -55,7 +56,7 @@ const Feed = ({ navigation }) => {
 
   if (data) {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <FlatList
           data={data.getAllShops}
           renderItem={renderItem}
@@ -67,14 +68,14 @@ const Feed = ({ navigation }) => {
           }}
           refreshing={refresh}
         />
-      </View>
+      </SafeAreaView>
     );
   }
   return null;
 };
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFFF",
+    flex: 1,
   },
   itemContainer: {
     height: 300,

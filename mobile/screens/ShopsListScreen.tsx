@@ -15,7 +15,7 @@ export default function ShopsListScreen() {
             backgroundColor: "#FFF",
           },
           title: "",
-          headerShadowVisible: false,
+          headerShown: false,
         }}
       />
       <Stack.Screen name="ShopDetails" component={ShopDetails} />
