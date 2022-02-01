@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { Image, View, Text, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
+
 const Deal = ({ item }) => {
   return (
     <View style={styles.container}>
@@ -12,6 +14,16 @@ const Deal = ({ item }) => {
         onLoad={() => {}} //TODO: Implement a loader
       />
       <Text>{item.shop}</Text>
+      <Text>Adresse: {item.address}</Text>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text>{item.deal}</Text>
+      </View>
     </View>
   );
 };
