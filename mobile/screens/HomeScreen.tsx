@@ -1,7 +1,9 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Deal from "../components/Deal";
 import Colors from "../constants/Colors";
 
+//TODO: call api
 const goodDeals = [
   {
     id: 1,
@@ -30,7 +32,7 @@ export default function HomeScreen() {
       </View>
       <FlatList
         data={goodDeals}
-        renderItem={(item) => <Text>item.shop</Text>}
+        renderItem={({ item }) => <Deal item={item} />}
         keyExtractor={(item) => String(item.id)}
         horizontal={true}
       ></FlatList>

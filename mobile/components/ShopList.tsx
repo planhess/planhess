@@ -29,11 +29,12 @@ const Feed = ({ navigation }) => {
             }
           >
             <Image
-              style={{ height: 120 }}
+              style={styles.image}
               source={{
                 uri: "https://snm-nl-contentmedia.s3-eu-west-1.amazonaws.com/cookloveshare-wordpress/app/uploads/2018/01/10171030/quelles-sont-les-5-choses-les-plus-sales-dans-un-restaurant.jpg",
               }}
               resizeMode="cover"
+              onLoad={() => {}} //TODO: Implement a loader
             />
             {/* <Text
           > */}
@@ -104,6 +105,9 @@ const styles = StyleSheet.create({
   separator: {
     height: 10,
     backgroundColor: Colors.red.color,
+  },
+  image: {
+    height: 120,
   },
 });
 
