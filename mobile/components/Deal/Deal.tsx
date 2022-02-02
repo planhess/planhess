@@ -1,8 +1,30 @@
-import { useEffect } from "react";
 import { Image, View, Text, StyleSheet } from "react-native";
-import Colors from "../constants/Colors";
+import Colors from "../../constants/Colors";
+
+export const extractNumber = (deal: string): string => {
+  if (!deal) throw new Error("deal parameter in extractNumber not found");
+  const numberArray: RegExpMatchArray | null = deal.match(/\d./g);
+  if (numberArray) return numberArray.join("");
+  else return deal;
+};
 
 const Deal = ({ item }) => {
+  const DealFormat = (): JSX.Element => {
+    const array = item.deal.split(" ");
+    const indexOfPrice = array.indexOf(extractNumber(item.deal));
+
+    return (
+      <Text>
+        {array.map((elem: string, i: number) => {
+          if (indexOfPrice === i) {
+            return <Text style={styles.priceFormat}>{elem} </Text>;
+          }
+          return <Text>{elem} </Text>;
+        })}
+      </Text>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -22,7 +44,7 @@ const Deal = ({ item }) => {
           alignItems: "center",
         }}
       >
-        <Text>{item.deal}</Text>
+        <DealFormat />
       </View>
     </View>
   );
@@ -39,6 +61,9 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 120,
+  },
+  priceFormat: {
+    color: "red",
   },
 });
 export default Deal;

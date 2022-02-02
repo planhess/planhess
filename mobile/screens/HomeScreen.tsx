@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Deal from "../components/Deal";
+import Deal from "../components/Deal/Deal";
 import Colors from "../constants/Colors";
 
 //TODO: call api
