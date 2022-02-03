@@ -9,7 +9,10 @@ type RatingProps = {
   size: number;
   rating: number;
 };
-const Rating = ({ size, color, rating }: RatingProps): JSX.Element => {
+
+const RATING_VALUE_MAX = 5;
+
+const Rating = ({ size, color, rating }: RatingProps): JSX.Element | null => {
   const [stars, setStars] = useState<Array<IconName>>([]);
 
   useEffect(() => {
@@ -17,21 +20,23 @@ const Rating = ({ size, color, rating }: RatingProps): JSX.Element => {
       const iconName: IconName = "star";
       setStars((prev) => prev.concat(iconName));
     }
-    if (rating <= 5) {
-      const numberOfStarsMissed: number = 5 - rating;
+    if (rating <= RATING_VALUE_MAX) {
+      const numberOfStarsMissed: number = RATING_VALUE_MAX - rating;
       for (let i = 0; i < numberOfStarsMissed; i++) {
         const iconName: IconName = "star-o";
         setStars((prev) => prev.concat(iconName));
       }
     }
   }, []);
+  if (rating > RATING_VALUE_MAX) {
+    return null;
+  }
 
   return (
     <>
-      {rating <= 5 &&
-        stars.map((starName: IconName, index) => (
-          <FontAwesome name={starName} color={color} key={index} size={size} />
-        ))}
+      {stars.map((starName: IconName, index) => (
+        <FontAwesome name={starName} color={color} key={index} size={size} />
+      ))}
     </>
   );
 };

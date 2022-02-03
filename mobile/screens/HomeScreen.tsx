@@ -3,27 +3,36 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Deal from "../components/Deal/Deal";
 import Colors from "../constants/Colors";
 
+interface MockDeal {
+  idshop: number;
+  shop: string;
+  shopAddress: string;
+  dealDescription: string;
+}
 //TODO: call api
-const goodDeals = [
+const goodDeals: Array<MockDeal> = [
   {
-    id: 1,
+    idshop: 1,
     shop: "Shop1",
-    address: "Address1",
-    deal: "Poké bowls à 7.50 euros",
+    shopAddress: "Address1",
+    dealDescription: "Poké bowls à 7.50 euros",
   },
   {
-    id: 2,
+    idshop: 2,
     shop: "Shop2",
-    address: "Address2",
-    deal: "Poké bowls à 7.50 euros",
+    shopAddress: "Address2",
+    dealDescription: "Poké bowls à 7.50 euros",
   },
   {
-    id: 3,
+    idshop: 3,
     shop: "Shop3",
-    address: "Address3",
-    deal: "Poké bowls à 7.50 euros",
+    shopAddress: "Address3",
+    dealDescription: "Poké bowls à 7.50 euros",
   },
 ];
+
+const keyExtractor = ({ idshop }: MockDeal) => String(idshop);
+
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
@@ -33,8 +42,8 @@ export default function HomeScreen() {
       <FlatList
         data={goodDeals}
         renderItem={({ item }) => <Deal item={item} />}
-        keyExtractor={(item) => String(item.id)}
-        horizontal={true}
+        keyExtractor={(item) => String(item.idshop)}
+        horizontal
       ></FlatList>
     </SafeAreaView>
   );

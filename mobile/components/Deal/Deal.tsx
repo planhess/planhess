@@ -2,29 +2,32 @@ import { Image, View, Text, StyleSheet } from "react-native";
 import Colors from "../../constants/Colors";
 
 export const extractNumber = (deal: string): string => {
-  if (!deal) throw new Error("deal parameter in extractNumber not found");
   const numberArray: RegExpMatchArray | null = deal.match(/\d./g);
-  if (numberArray) return numberArray.join("");
-  else return deal;
+  return numberArray && numberArray.length ? numberArray.join("") : deal;
 };
 
+const DealFormat = ({ deal }: { deal: string }): JSX.Element => {
+  const dealDescriptionToArray = deal.split(" ");
+  const indexOfPrice = dealDescriptionToArray.indexOf(extractNumber(deal));
+  //TODO: Modify the key
+  return (
+    <Text>
+      {dealDescriptionToArray.map((elem: string, i: number) => {
+        if (indexOfPrice === i) {
+          return (
+            <Text key={i} style={styles.priceFormat}>
+              {elem}{" "}
+            </Text>
+          );
+        }
+        return <Text key={i}>{elem} </Text>;
+      })}
+    </Text>
+  );
+};
+
+// Type
 const Deal = ({ item }) => {
-  const DealFormat = (): JSX.Element => {
-    const array = item.deal.split(" ");
-    const indexOfPrice = array.indexOf(extractNumber(item.deal));
-
-    return (
-      <Text>
-        {array.map((elem: string, i: number) => {
-          if (indexOfPrice === i) {
-            return <Text style={styles.priceFormat}>{elem} </Text>;
-          }
-          return <Text>{elem} </Text>;
-        })}
-      </Text>
-    );
-  };
-
   return (
     <View style={styles.container}>
       <Image
@@ -35,16 +38,10 @@ const Deal = ({ item }) => {
         resizeMode="cover"
         onLoad={() => {}} //TODO: Implement a loader
       />
-      <Text>{item.shop}</Text>
-      <Text>Adresse: {item.address}</Text>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <DealFormat />
+      <Text>{item.idshop}</Text>
+      <Text>Adresse: {item.shopAddress}</Text>
+      <View>
+        <DealFormat deal={item.dealDescription} />
       </View>
     </View>
   );
@@ -61,6 +58,11 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 120,
+  },
+  dealContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   priceFormat: {
     color: "red",

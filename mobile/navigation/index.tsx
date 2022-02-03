@@ -117,7 +117,7 @@ function BottomTabNavigator(): JSX.Element {
         })}
       />
       <BottomTab.Screen
-        name="TabHome"
+        name="Home"
         component={HomeScreen}
         options={{
           title: "Home",
