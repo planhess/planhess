@@ -31,6 +31,7 @@ const goodDeals: Array<MockDeal> = [
   },
 ];
 
+const renderItem = ({ item }: { item: MockDeal }) => <Deal item={item} />;
 const keyExtractor = ({ idshop }: MockDeal) => String(idshop);
 
 export default function HomeScreen() {
@@ -41,8 +42,8 @@ export default function HomeScreen() {
       </View>
       <FlatList
         data={goodDeals}
-        renderItem={({ item }) => <Deal item={item} />}
-        keyExtractor={(item) => String(item.idshop)}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
         horizontal
       ></FlatList>
     </SafeAreaView>
