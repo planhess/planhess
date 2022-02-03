@@ -12,7 +12,7 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Pressable } from "react-native";
+import { Pressable } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -28,11 +28,8 @@ import LinkingConfiguration from "./LinkingConfiguration";
 import ShopsListScreen from "../screens/ShopsListScreen";
 import HomeScreen from "../screens/HomeScreen";
 
-export default function Navigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName;
-}): JSX.Element {
+export default function Navigation(): JSX.Element {
+  const colorScheme = useColorScheme();
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
