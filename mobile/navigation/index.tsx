@@ -12,7 +12,7 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Pressable } from "react-native";
+import { Pressable } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -26,12 +26,10 @@ import {
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import ShopsListScreen from "../screens/ShopsListScreen";
+import HomeScreen from "../screens/HomeScreen";
 
-export default function Navigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName;
-}): JSX.Element {
+export default function Navigation(): JSX.Element {
+  const colorScheme = useColorScheme();
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
@@ -114,6 +112,17 @@ function BottomTabNavigator(): JSX.Element {
             </Pressable>
           ),
         })}
+      />
+      <BottomTab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: "Home",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            return <TabBarIcon name="home" focused={focused} />;
+          },
+        }}
       />
       <BottomTab.Screen
         name="TabTwo"
