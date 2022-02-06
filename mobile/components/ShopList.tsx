@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     flexBasis: "50%",
     color: Colors.dark.background,
+    fontFamily: "prompt-extraBold",
   },
   separator: {
     height: 10,

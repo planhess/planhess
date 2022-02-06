@@ -79,7 +79,7 @@ function BottomTabNavigator(): JSX.Element {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       screenOptions={{
         // tabBarActiveTintColor: Colors[colorScheme].tint,
         tabBarShowLabel: false,
@@ -93,6 +93,10 @@ function BottomTabNavigator(): JSX.Element {
         component={Map}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
           title: "Planhess",
+          headerTitleStyle: {
+            fontFamily: "prompt-extraBold",
+            fontSize: 24,
+          },
           tabBarIcon: ({ focused }) => {
             return <TabBarIcon name="map-marker" focused={focused} />;
           },

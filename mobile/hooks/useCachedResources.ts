@@ -1,33 +1,35 @@
-import { FontAwesome } from '@expo/vector-icons'
-import * as Font from 'expo-font'
-import * as SplashScreen from 'expo-splash-screen'
-import { useEffect, useState } from 'react'
+import { FontAwesome } from "@expo/vector-icons";
+import * as Font from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect, useState } from "react";
 
-export default function useCachedResources (): boolean {
-  const [isLoadingComplete, setLoadingComplete] = useState(false)
+export default function useCachedResources(): boolean {
+  const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   // Load any resources or data that we need prior to rendering the app
   useEffect(() => {
-    async function loadResourcesAndDataAsync (): void {
+    async function loadResourcesAndDataAsync(): void {
       try {
-        SplashScreen.preventAutoHideAsync()
+        SplashScreen.preventAutoHideAsync();
 
         // Load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
-          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf')
-        })
+          "space-mono": require("../assets/fonts/SpaceMono-Regular.ttf"),
+          "prompt-bold": require("../assets/fonts/Prompt-Bold.ttf"),
+          "prompt-extraBold": require("../assets/fonts/Prompt-ExtraBold.ttf"),
+        });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
-        console.warn(e)
+        console.warn(e);
       } finally {
-        setLoadingComplete(true)
-        SplashScreen.hideAsync()
+        setLoadingComplete(true);
+        SplashScreen.hideAsync();
       }
     }
 
-    loadResourcesAndDataAsync()
-  }, [])
+    loadResourcesAndDataAsync();
+  }, []);
 
-  return isLoadingComplete
+  return isLoadingComplete;
 }

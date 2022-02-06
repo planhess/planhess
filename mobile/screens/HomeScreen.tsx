@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Deal from "../components/Deal/Deal";
 import Colors from "../constants/Colors";
-
+const font = require("../assets/fonts/Prompt-Bold.ttf");
 interface MockDeal {
   idshop: number;
   shop: string;
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#FFFF",
-    fontWeight: "bold",
     fontSize: 45,
+    fontFamily: "prompt-extraBold",
   },
 });
