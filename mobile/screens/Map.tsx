@@ -32,20 +32,23 @@ export default function Map(): JSX.Element {
   const { loading, error, data } = useQuery(GET_ALL_SHOPS);
   if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error: {error}</Text>;
-  return (
-    <View style={styles.container}>
-      <MapView initialRegion={initialRegion} style={styles.map}>
-        {data.getAllShops.map((shop: Shop) => (
-          <Marker
-            key={shop.idshop}
-            coordinate={shop.coordinates}
-            title={shop.name}
-            description={shop.description}
-          />
-        ))}
-      </MapView>
-    </View>
-  );
+  if (data) {
+    return (
+      <View style={styles.container}>
+        <MapView initialRegion={initialRegion} style={styles.map}>
+          {data.getAllShops.map((shop: Shop) => (
+            <Marker
+              key={shop.idshop}
+              coordinate={shop.coordinates}
+              title={shop.name}
+              description={shop.description}
+            />
+          ))}
+        </MapView>
+      </View>
+    );
+  }
+  return <></>;
 }
 
 const styles = StyleSheet.create({

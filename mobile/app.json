@@ -23,6 +23,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.martinmortier.planhess",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyD7-PqF0ojoTb0yr8mQVrWhjYqF-eQCYc0"
+        }
       }
     },
     "web": {
