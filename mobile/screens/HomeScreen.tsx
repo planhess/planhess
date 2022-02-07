@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#FFFF",
-    fontSize: 45,
+    fontSize: 40,
     fontFamily: "prompt-extraBold",
   },
 });
